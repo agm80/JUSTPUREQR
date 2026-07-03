@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#14B8A6" />
+
+    <!-- Primary SEO -->
+    <title>QR Code Generator – Free Online QR Maker for URL, WiFi, vCard & More</title>
+    <meta name="description" content="Generate and customize high-quality QR Codes for free. Fast, secure, and offline-ready.">
+    <meta name="keywords" content="qr code generator, qr generator, free qr code, wifi qr code, vcard qr code, url qr code, custom qr code, qr maker, online qr generator" />
+    <meta name="author" content="QR Generator" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+    <!-- Canonical href is rewritten to an absolute URL at runtime by the inline script below. -->
+    <link rel="canonical" id="__canonical" href="/" />
+    <script>
+      // Rewrite the canonical link to an absolute URL so SEO audits accept it.
+      // We do this inline (no defer) so it runs before any crawler snapshot.
+      (function () {
+        try {
+          var l = document.getElementById('__canonical');
+          if (l && window.location && window.location.origin) {
+            l.setAttribute('href', window.location.origin + '/');
+          }
+          // Also keep og:url + twitter:image:src in sync with the deployed origin.
+          var ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) ogUrl.setAttribute('content', window.location.origin + '/');
+          var ogImg = document.querySelector('meta[property="og:image"]');
+          if (ogImg && ogImg.getAttribute('content').indexOf('http') !== 0) {
+            ogImg.setAttribute('content', window.location.origin + '/opengraph.jpg');
+          }
+          var twImg = document.querySelector('meta[name="twitter:image"]');
+          if (twImg && twImg.getAttribute('content').indexOf('http') !== 0) {
+            twImg.setAttribute('content', window.location.origin + '/opengraph.jpg');
+          }
+        } catch (e) { /* noop */ }
+      })();
+    </script>
+
+    <!-- iOS / PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="QR Generator" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QR Code Generator" />
+    <meta property="og:title" content="QR Code Generator – Free Online QR Maker" />
+    <meta property="og:description" content="Create, customize, and download QR codes for URLs, WiFi, vCards, emails, and more. Free, fast, and works offline." />
+    <meta property="og:image" content="/opengraph.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="QR Code Generator – create custom QR codes online" />
+    <meta property="og:url" content="/" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QR Code Generator – Free Online QR Maker" />
+    <meta name="twitter:description" content="Create, customize, and download QR codes for URLs, WiFi, vCards, emails, and more. Free, fast, and works offline." />
+    <meta name="twitter:image" content="/opengraph.jpg" />
+    <meta name="twitter:image:alt" content="QR Code Generator – create custom QR codes online" />
+
+    <!-- Icons & manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "QR Code Generator",
+        "description": "Free online QR code generator. Create, customize, and download QR codes for URLs, WiFi, vCards, emails, SMS, phone numbers, locations, and events.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript and a modern browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Generate QR codes for URLs, text, WiFi, vCards, emails, SMS, phone, location, events",
+          "Custom colors and dot styles",
+          "Bulk QR code generation",
+          "QR code scanning",
+          "Export to PNG, SVG and PDF",
+          "Works offline (PWA)"
+        ]
+      }
+    </script>
+
+    <!-- Preconnect to font origins so the connection is warm by the time we need it -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Load Google Fonts asynchronously (non-render-blocking).
+      The browser fetches it as if for print, then swaps to "all" once loaded.
+      &display=swap ensures text shows immediately in a fallback font.
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      />
+    </noscript>
+
+    <!--
+      Critical CSS: only paint the background + header skeleton for fast LCP.
+      We deliberately do NOT set body `color` here — that is owned by the React
+      app's theme system (light / dark / system). Setting it from
+      `prefers-color-scheme` would conflict with the in-app theme toggle and
+      can cause invisible text inside dialogs.
+    -->
+    <style>
+      html, body { margin: 0; padding: 0; background: hsl(38 25% 97%); }
+      @media (prefers-color-scheme: dark) {
+        html, body { background: hsl(0 0% 7%); }
+      }
+      body {
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        min-height: 100vh;
+      }
+      #root { min-height: 100vh; }
+      /* Tiny header placeholder so LCP element is in the initial paint frame */
+      .__app-skeleton {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .__app-skeleton__logo {
+        width: 2.5rem; height: 2.5rem;
+        border-radius: 0.75rem;
+        background: hsl(15 64% 60%);
+      }
+      .__app-skeleton__title {
+        height: 1.5rem; width: 9rem;
+        border-radius: 0.5rem;
+        background: rgba(0, 0, 0, 0.08);
+      }
+      @media (prefers-color-scheme: dark) {
+        .__app-skeleton__title { background: rgba(255, 255, 255, 0.1); }
+      }
+      /* Visually-hidden helper for crawler-readable copy that doesn't affect UI */
+      .__sr-only {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Above-the-fold skeleton — replaced as soon as React mounts -->
+      <div class="__app-skeleton" aria-hidden="true">
+        <div class="__app-skeleton__logo"></div>
+        <div class="__app-skeleton__title"></div>
+      </div>
+      <!--
+        Crawler / no-JS fallback content. Kept visually hidden so the React app's
+        UI is unaffected, but readable by Googlebot / Lighthouse / screen readers.
+      -->
+      <div class="__sr-only">
+        <h1>QR Code Generator – Free Online QR Maker</h1>
+        <p>
+          Create, customize, and download QR codes for URLs, WiFi networks, vCards,
+          emails, SMS, phone numbers, locations, and calendar events. Free, fast,
+          and works offline. No sign-up required.
+        </p>
+        <ul>
+          <li>URL QR codes</li>
+          <li>WiFi QR codes</li>
+          <li>vCard / contact QR codes</li>
+          <li>Email and SMS QR codes</li>
+          <li>Phone number and location QR codes</li>
+          <li>Calendar event QR codes</li>
+          <li>Bulk QR code generation</li>
+          <li>QR code scanning</li>
+          <li>Export as PNG, SVG, or PDF</li>
+        </ul>
+      </div>
+      <noscript>
+        <p style="max-width:40rem;margin:2rem auto;padding:0 1.5rem;font-family:system-ui,sans-serif;">
+          This QR code generator requires JavaScript to run. Please enable
+          JavaScript in your browser to create and customize QR codes.
+        </p>
+      </noscript>
+    </div>
+    <!-- Scripts placed at bottom of body. type="module" is deferred by default. -->
+    <script type="module" defer src="/src/main.tsx"></script>
+  </body>
+</html>
